@@ -36,3 +36,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('books/{book}/complete', [App\Http\Controllers\BookController::class, 'bookComplete'])->name('books.complete');
 
 });
+
+Route::middleware(['auth'])->prefix('customer')->group(function () {
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'indexCustomer'])->name('customer.home');
+    Route::get('bikes/bookings', [App\Http\Controllers\BookController::class, 'bikeBookings'])->name('bikes.bookings');
+    Route::get('bookings/checkout', [App\Http\Controllers\BookController::class, 'checkout'])->name('bookings.checkout');
+    Route::post('bookings/checkout', [App\Http\Controllers\BookController::class, 'checkoutStore'])->name('bookings.checkout.store');
+
+    Route::get('user/{user}/edit', [App\Http\Controllers\UserController::class, 'editUser'])->name('user.edit');
+    Route::put('user/{user}/update', [App\Http\Controllers\UserController::class, 'updateUser'])->name('user.update');
+});

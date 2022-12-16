@@ -18,6 +18,7 @@ class PageController extends Controller
     {
         // count items in cart session
        $cartCount = $this->countItemsInCart();
+       
         
         $bikes = Bike::query()->with('brand')->get();
         return view('welcome', compact('bikes','cartCount'));
@@ -46,11 +47,18 @@ class PageController extends Controller
         }else{
             $cartItemIds = [];
             foreach ($cart as $key => $cartItem) {
-                $cartItemIds += $cartItem['id'] ;
+                $cartItemIds[] = $cartItem['id'];
                 
             }
             // check if $bike->id is in  $cartItemIds
             if (in_array($bike->id, $cartItemIds)){
+                // if it is, increment quantity
+                foreach ($cart as $key => $cartItem) {
+                    if ($bike->id == $cartItem['id']){
+                        $cart[$key]['quantity']++;
+                    }
+                }
+                session()->put('cart', $cart);
               
             }else{
                 $cart[] = [
@@ -66,13 +74,9 @@ class PageController extends Controller
             }
 
         }
-        
-     
-           
 
-        
-
-      
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    
      
     }
 
@@ -80,11 +84,14 @@ class PageController extends Controller
     {
         $cart = session()->get('cart');
         $count = 0;
-        if($cart){
-            foreach($cart as $id => $details){
-                $count += $details['quantity'];
+        if (empty($cart)){
+            return $count;
+        }else{
+            foreach ($cart as $key => $cartItem) {
+                $count += $cartItem['quantity'];
             }
         }
+      
         return $count;
     }
 
@@ -92,7 +99,6 @@ class PageController extends Controller
     {
         $cartCount = $this->countItemsInCart();
         $cart = session()->get('cart');
-        return $cart;
         return view('cart', compact('cartCount','cart'));
     }
 

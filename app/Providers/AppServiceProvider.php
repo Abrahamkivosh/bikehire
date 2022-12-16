@@ -23,6 +23,24 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $cart = session()->get('cart');
+        $cartCount = $this->countItemsInCart($cart);
+        
+        view()->share('cartCount', $cartCount);
+    }
+
+    protected function countItemsInCart()
+    {
+        $cart = session()->get('cart');
+        $count = 0;
+        if (empty($cart)){
+            return $count;
+        }else{
+            foreach ($cart as $key => $cartItem) {
+                $count += $cartItem['quantity'];
+            }
+        }
+      
+        return $count;
     }
 }

@@ -57,21 +57,10 @@
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li class="active"><a href="index.html">Home</a></li>
-                         <li><a href="fleet.html">Fleet</a></li>
-                         <li><a href="offers.html">Offers</a></li>
-                         <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
-                              
-                              <ul class="dropdown-menu">
-                                   <li><a href="blog-posts.html">Blog</a></li>
-                                   <li><a href="about-us.html">About Us</a></li>
-                                   <li><a href="team.html">Team</a></li>
-                                   <li><a href="testimonials.html">Testimonials</a></li>
-                                   <li><a href="terms.html">Terms</a></li>
-                              </ul>
-                         </li>
-                         <li><a href="contact.html">Contact Us</a></li>
+                         <li class="active"><a href="{{ url('/') }}">Home</a></li>
+                         <li><a href="/services">Services</a></li>
+                         <li><a href="/about-us">About Us</a></li>
+                         <li><a href="/contact">Contact Us</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-nav-first">
                          <li class="dropdown">
@@ -80,7 +69,7 @@
                                    <span class="caret"></span></a>
                               
                               <ul class="dropdown-menu">
-                                   <li><a href="blog-posts.html"><i class="fa fa-user" aria-hidden="true">My Account</i></a></li>
+                                   <li><a href="{{ route('login') }}"><i class="fa fa-user" aria-hidden="true">My Account</i></a></li>
                                    <li><a href="about-us.html">Bookings</a></li>
                                    <li><a href="team.html">Team</a></li>
                               </ul>
@@ -91,7 +80,7 @@
                                    <span class="badge badge-pill badge-danger">
                                         
                                         @if (session('cart'))
-                                             {{--  {{ $cartCount }}  --}}
+                                             {{ $cartCount }}
                                         @else
                                              0
                                         @endif

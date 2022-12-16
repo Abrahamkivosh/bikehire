@@ -66,4 +66,33 @@ class UserController extends Controller
         Session::flash('success', 'User deleted successfully');
         return redirect()->route('users.index');
     }
+    public function editUser(User $user)
+    {
+        return view('users.profile.edit', compact('user'));
+    }
+    public function updateUser(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$user->id,
+            'password' => 'nullable|min:8',
+            'phone' => 'required',
+            'national_id' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+        ]);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password ? bcrypt($request->password) : $user->password,
+            'phone' => $request->phone,
+            'national_id' => $request->national_id,
+            'address' => $request->address,
+            'city' => $request->city,
+            'country' => $request->country,
+        ]);
+        Session::flash('success', 'User updated successfully');
+        return redirect()->route('home', $user->id);
+    }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Session;
 
 class BookController extends Controller
@@ -36,9 +38,35 @@ class BookController extends Controller
      * @param  \App\Http\Requests\StoreBookRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBookRequest $request)
+    public function store(Request $request)
     {
-        //
+        // array of data to be inserted [ [key => value], [key => value] ]
+        $data = $request->all();
+
+        $data['user_id'] = auth()->user()->id;
+        $data['status'] = 'pending';
+        // $data['total_hours'] = $data['end_date']->diffInHours($data['start_date']);
+
+        $data['total'] = $data['total_hours'] * $data['price_per_hour'];
+        foreach ($data as $key => $value) {
+            $book = new Book();
+            $book->book_number = $this->generateBookNumber();
+            $book->user_id = $value['user_id'];
+            $book->bike_id = $value['id'];
+            $book->quantity = $value['quantity'];
+            $book->start_date = null;
+            $book->end_date = null;
+            $book->price_per_hour = $value['price_per_hour'];
+            $book->total_hours = null;
+            $book->total = null;
+            $book->status = 'pending';
+            $book->save();
+            
+        }
+
+        return response()->json(['success' => 'Booked successfully']);
+
+       
     }
 
     /**
@@ -112,6 +140,25 @@ class BookController extends Controller
         $book->save();
         Session::flash('success', 'Booking Completed');
         return redirect()->back()->with('success', 'Booking Completed');
+    }
+    
+    public function bikeBookings(){
+        $user = auth()->user();
+        $books = $user->bookings;
+        return view('users.bookings', compact('books'));
+    }
+
+    protected function generateBookNumber()
+    {
+        $bookNumber = mt_rand(1000000000, 9999999999); // better than rand()
+
+        // call the same function if the book number exists already
+        if ($this->bookNumberExists($bookNumber)) {
+            return $this->generateBookNumber();
+        }
+
+        // otherwise, it's valid and can be used
+        return $bookNumber;
     }
 
 }

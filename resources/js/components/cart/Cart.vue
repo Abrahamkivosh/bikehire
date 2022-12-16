@@ -48,11 +48,17 @@
             <td colspan="3" class="text-right">Total</td>
             <td class="text text-info " colspan="2">Ksh <span  >{{grandTotal()}}</span></td>
         </tr>
+        <tr>
+            <td colspan="5" class="text-right">
+                <a @click.prevent="checkout()" href="#" class="btn btn-primary btn-lg">Checkout</a>
+            </td>
+        </tr>
 
     </tbody>
   </table>
 </template>
 <script>
+import axios from "axios";
 export default {
   props: ["cart"],
   data() {
@@ -90,6 +96,21 @@ export default {
     removeItem(item){
 
         console.log(item);
+    },
+    checkout(){
+      let cart = Object.values(this.carts);
+      console.log(cart);
+   
+      axios.post('/api/checkout',cart).then((result) => {
+
+        console.log(result);
+        alert("Checkout successful")
+        
+      }).catch((err) => {
+        console.log(err);
+        alert("Checkout failed")
+        
+      });
     }
     
   },

@@ -21,11 +21,11 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(\App\Models\Bike::class);
             $table->integer('quantity');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->decimal('price_per_hour', 8, 2);
-            $table->decimal('total_hours', 8, 2);
-            $table->decimal('total', 8, 2);
+            $table->decimal('total_hours', 8, 2)->nullable();
+            $table->decimal('total', 8, 2)->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected', 'canceled','completed']);
             $table->timestamps();
         });
