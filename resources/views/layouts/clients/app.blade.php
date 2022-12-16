@@ -73,8 +73,7 @@
                               
                               <ul class="dropdown-menu">
                                    <li><a href="{{ route('login') }}"><i class="fa fa-user" aria-hidden="true">My Account</i></a></li>
-                                   <li><a href="about-us.html">Bookings</a></li>
-                                   <li><a href="team.html">Team</a></li>
+                                   <li><a href="{{ route('bikes.bookings') }}">Bookings</a></li>
                               </ul>
                          </li>
 
