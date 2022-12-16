@@ -61,7 +61,7 @@
 
                     <div class="col-md-12 col-sm-12">
                         <div class="table-responsive">
-                            <cart-component :cart="{{ json_encode($cart) }}"></cart-component>
+                            <cart-component :cart="{{ json_encode($cart) }}"  ></cart-component>
                         </div>
                     </div>
 

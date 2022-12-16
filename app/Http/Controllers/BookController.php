@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreBookRequest;
-use App\Http\Requests\UpdateBookRequest;
 use App\Models\Book;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreBookRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\UpdateBookRequest;
 
 class BookController extends Controller
 {
@@ -41,16 +43,10 @@ class BookController extends Controller
     public function store(Request $request)
     {
         // array of data to be inserted [ [key => value], [key => value] ]
-        $data = $request->all();
-
-        $data['user_id'] = auth()->user()->id;
-        $data['status'] = 'pending';
-        // $data['total_hours'] = $data['end_date']->diffInHours($data['start_date']);
-
-        $data['total'] = $data['total_hours'] * $data['price_per_hour'];
-        foreach ($data as $key => $value) {
+        $dataArray = $request->all();
+        foreach ($dataArray as $key => $value) {
             $book = new Book();
-            $book->book_number = $this->generateBookNumber();
+            $book->book_number = Str::uuid();
             $book->user_id = $value['user_id'];
             $book->bike_id = $value['id'];
             $book->quantity = $value['quantity'];
@@ -61,8 +57,17 @@ class BookController extends Controller
             $book->total = null;
             $book->status = 'pending';
             $book->save();
-            
         }
+
+        
+        // $data['total_hours'] = $data['end_date']->diffInHours($data['start_date']);
+
+        // $data['total'] = $data['total_hours'] * $data['price_per_hour'];
+        // foreach ($data as $key => $value) {
+        //     Log::info( $value);
+          
+            
+        // }
 
         return response()->json(['success' => 'Booked successfully']);
 

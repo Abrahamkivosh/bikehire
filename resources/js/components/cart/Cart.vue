@@ -100,6 +100,11 @@ export default {
     checkout(){
       let cart = Object.values(this.carts);
       console.log(cart);
+      // get the user id from name="user-id" in the blade file
+      const userId = document.querySelector('meta[name="user-id"]').getAttribute('content');
+      cart.forEach(item => {
+          item.user_id = userId;
+      });
    
       axios.post('/api/checkout',cart).then((result) => {
 
