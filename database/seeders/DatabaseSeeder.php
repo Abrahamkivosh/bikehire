@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'address' => '1234, ABC Street, XYZ City, 123456',
             'city' => 'Juja City',
             'country' => 'Kenya',
+            'national_id' => '12345678190'
         ]);
 
         User::create([
@@ -37,6 +38,7 @@ class DatabaseSeeder extends Seeder
             'address' => '1234, ABC Street, XYZ City, 123456',
             'city' => 'Juja City',
             'country' => 'Kenya',
+            'national_id' => '12345678890'
         ]);
 
         // $this->call([
