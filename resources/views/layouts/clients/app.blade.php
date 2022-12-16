@@ -54,7 +54,7 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="#" class="navbar-brand">Car Rental Website</a>
+                    <a href="#" class="navbar-brand">Bike Rental Website</a>
                </div>
 
                <!-- MENU LINKS -->
