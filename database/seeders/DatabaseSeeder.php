@@ -14,16 +14,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(5)->create();
 
-        $this->call([
-            BrandSeeder::class,
-            BikeSeeder::class,
-            FeatureSeeder::class,
-            BookSeeder::class,
-            PaymentSeeder::class
-            
+        User::create([
+            'name' => 'Admin',
+            'email' =>  'admin@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => 'admin',
+            'phone' => '1234567890',
+            'address' => '1234, ABC Street, XYZ City, 123456',
+            'city' => 'Juja City',
+            'country' => 'Kenya',
         ]);
+
+        // $this->call([
+        //     BrandSeeder::class,
+        //     BikeSeeder::class,
+        //     FeatureSeeder::class,
+        //     BookSeeder::class,
+        //     PaymentSeeder::class
+            
+        // ]);
 
     }
 }

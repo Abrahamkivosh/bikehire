@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreBookRequest;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\UpdateBookRequest;
+use Illuminate\Support\Carbon;
 
 class BookController extends Controller
 {
@@ -142,6 +143,11 @@ class BookController extends Controller
     public function bookComplete(Book $book)
     {
         $book->status = 'completed';
+        $book->start_date = now();
+        // 
+        $book->end_date = Carbon::now()->addHours(2);
+        $book->total_hours = $book->end_date->diffInHours($book->start_date);
+        $book->total = $book->total_hours * $book->price_per_hour;
         $book->save();
         Session::flash('success', 'Booking Completed');
         return redirect()->back()->with('success', 'Booking Completed');
