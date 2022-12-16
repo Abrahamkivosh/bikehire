@@ -5,39 +5,15 @@
                 <div class="caption">
                     <div class="container">
                         <div class="col-md-6 col-sm-12">
-                            <h1>Lorem ipsum dolor sit amet.</h1>
-                            <h3>Voluptas dignissimos esse, explicabo cum fugit eaque, perspiciatis quia ab nisi sapiente
-                                delectus eiet.</h3>
-                            <a href="fleet.html" class="section-btn btn btn-default">Fleet</a>
+                            <h1>Move with Convinence .</h1>
+                            <h3>We offer the best price for our bikes</h3>
+                            <a href="/" class="section-btn btn btn-default">Fleet</a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="item item-second">
-                <div class="caption">
-                    <div class="container">
-                        <div class="col-md-6 col-sm-12">
-                            <h1>Distinctio explicabo vero animi culpa facere voluptatem.</h1>
-                            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, excepturi.</h3>
-                            <a href="fleet.html" class="section-btn btn btn-default">Fleet</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="item item-third">
-                <div class="caption">
-                    <div class="container">
-                        <div class="col-md-6 col-sm-12">
-                            <h1>Efficient Learning Methods</h1>
-                            <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis
-                                sollicitudin ut at libero.</h3>
-                            <a href="fleet.html" class="section-btn btn btn-default">Fleet</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
         </div>
     </div>
 </section>

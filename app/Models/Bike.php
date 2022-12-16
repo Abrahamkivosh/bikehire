@@ -17,4 +17,9 @@ class Bike extends Model
     {
         return $this->hasMany(Feature::class);
     }
+    // image accessor
+    public function getImageAttribute($value)
+    {
+        return asset('storage/bikes/' . $value);
+    }
 }

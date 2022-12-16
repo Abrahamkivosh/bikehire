@@ -2,48 +2,7 @@
 @section('title', 'Home')
 @section('content')
 <!-- HOME -->
-<section id="home">
-     <div class="row">
-          <div class="owl-carousel owl-theme home-slider">
-               <div class="item item-first">
-                    <div class="caption">
-                         <div class="container">
-                              <div class="col-md-6 col-sm-12">
-                                   <h1>Lorem ipsum dolor sit amet.</h1>
-                                   <h3>Voluptas dignissimos esse, explicabo cum fugit eaque, perspiciatis quia ab nisi sapiente delectus eiet.</h3>
-                                   <a href="fleet.html" class="section-btn btn btn-default">Fleet</a>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-
-               <div class="item item-second">
-                    <div class="caption">
-                         <div class="container">
-                              <div class="col-md-6 col-sm-12">
-                                   <h1>Distinctio explicabo vero animi culpa facere voluptatem.</h1>
-                                   <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo, excepturi.</h3>
-                                   <a href="fleet.html" class="section-btn btn btn-default">Fleet</a>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-
-               <div class="item item-third">
-                    <div class="caption">
-                         <div class="container">
-                              <div class="col-md-6 col-sm-12">
-                                   <h1>Efficient Learning Methods</h1>
-                                   <h3>Nam eget sapien vel nibh euismod vulputate in vel nibh. Quisque eu ex eu urna venenatis sollicitudin ut at libero.</h3>
-                                   <a href="fleet.html" class="section-btn btn btn-default">Fleet</a>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-          </div>
-     </div>
-</section>
-
+@include("users.partials.topNav")
 <main>
     
 
@@ -64,7 +23,7 @@
                          <div class="team-thumb">
                               <div class="team-image">
                                    <a href="{{ route('bike.show',$bike) }}">
-                                   <img src="clients/images/offer-1-720x480.jpg" class="img-responsive" alt="">
+                                   <img src="{{ $bike->image }}" class="img-responsive" alt="">
                                    </a>
                               </div>
                               <div class="team-info">
