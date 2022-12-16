@@ -15,7 +15,7 @@
                     <div class="courses-thumb courses-thumb-secondary">
                          <div class="courses-top">
                               <div class="courses-image">
-                                   <img src="{{ asset('clients/images/offer-1-720x480.jpg') }}" class="img-responsive" alt="">
+                                   <img src="{{ $bike->image }}" class="img-responsive" alt="">
                               
                               </div>
                          </div>

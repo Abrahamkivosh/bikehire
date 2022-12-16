@@ -20,6 +20,6 @@ class Bike extends Model
     // image accessor
     public function getImageAttribute($value)
     {
-        return asset('storage/bikes/' . $value);
+        return asset('/images/' . $value);
     }
 }
